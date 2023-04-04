@@ -66,8 +66,9 @@
                     </h2>
                     <p class="mt-10">Fill fields and find approximate your repair</p>
                     <div class="dsn-form mt-20 form-box d-flex flex-column">
-                        <form id="contact-form" class="form w-100" method="post" action="https://theme.dsngrid.com/blackdsn/dark/contact.php"
-                              data-toggle="validator">
+                        <form id="contact-formf" class="form w-100" method="post" action="{% url 'contact' %}">
+                        {% csrf_token %}
+                              <data-toggle="validator">
                             <div class="messages"></div>
                             <div class="input__wrap controls">
                                 <div class="d-grid grid-md-2" data-dsn-gap="0px 30px">
