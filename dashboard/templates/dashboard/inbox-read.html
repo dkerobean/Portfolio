@@ -1,0 +1,101 @@
+{% extends 'layouts/admin.html' %}
+
+{% load static %}
+
+
+{% block content %}
+
+    <!--**********************************
+            Content body start
+        ***********************************-->
+        <div class="content-body">
+            <div class="container-fluid">
+				<!-- Add Order -->
+				
+                <div class="page-titles">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item"><a href="javascript:void(0)">Email</a></li>
+						<li class="breadcrumb-item active"><a href="javascript:void(0)">Read</a></li>
+					</ol>
+                </div>
+                <!-- row -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="email-left-box generic-width px-0 mb-5">
+                                    <div class="p-0">
+                                        <a href="https://vora.dexignlab.com/xhtml/email-compose.html" class="btn btn-primary d-block">Compose</a>
+                                    </div>
+                                    <div class="mail-list mt-4">
+                                        <a href="https://vora.dexignlab.com/xhtml/email-inbox.html" class="list-group-item active"><i
+                                                class="fa fa-inbox font-18 align-middle me-2"></i> Inbox <span
+                                                class="badge badge-primary badge-sm float-end">{{user_messages.count}}</span> 
+                                            </a>
+                                                
+                                        <a href="javascript:void(0);" class="list-group-item"><i
+                                                class="fa fa-paper-plane font-18 align-middle me-2"></i>Sent</a> <a href="javascript:void(0);" class="list-group-item"><i
+                                                class="fa fa-star font-18 align-middle me-2"></i>Important <span
+                                                class="badge badge-danger badge-sm text-white float-end">47</span>
+                                        </a>
+                                        <a href="javascript:void(0);" class="list-group-item"><i
+                                                class="mdi mdi-file-document-box font-18 align-middle me-2"></i>Draft</a><a href="javascript:void(0);" class="list-group-item"><i
+                                                class="fa fa-trash font-18 align-middle me-2"></i>Trash</a>
+                                    </div>
+                                    
+                                </div>
+                                <div class="email-right-box ms-0 ms-sm-4 ms-sm-0">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="right-box-padding">
+                                               
+                                                <div class="read-content">
+                                                    <div class="media pt-3 d-sm-flex d-block justify-content-between">
+														<div class="clearfix mb-3 d-flex">
+															<img class="me-3 rounded" width="50" alt="image" src="{% static 'images/avatar/1.jpg' %}">
+															<div class="media-body me-2">
+																<h5 class="text-primary mb-0 mt-1">{{message.name}}</h5>
+																<p class="mb-0">{{message.created|date:"F j, Y"}}</p>
+															</div>
+														</div>
+														<div class="clearfix mb-3">
+															<a href="javascript:void(0);" class="btn btn-primary px-3 light"><i class="fa fa-reply"></i> </a>
+															<a href="javascript:void(0);" class="btn btn-primary px-3 light ms-2"><i class="fa fa-long-arrow-right"></i> </a>
+															<a href="javascript:void(0);" class="btn btn-primary px-3 light ms-2"><i class="fa fa-trash"></i></a>
+														</div>
+													</div>
+                                                    <hr>
+                                                    <div class="media mb-2 mt-3">
+                                                        <div class="media-body"><span class="pull-right">{{message.created|time:"h:i A" }}</span>
+                                                            <h5 class="my-1 text-primary">{{message.email}}</h5>
+                                                            <p class="read-content-email">
+                                                                </p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="read-content-body">
+                                                        <h5 class="mb-4">Hi,Ingredia,</h5>
+                                                        
+                                                        <p class="mb-2">{{message.message}}</p>
+                                                        
+                                                        <hr>
+                                                    </div>
+                                                   
+                                                </div>
+                                                <div class="text-end">
+                                                    <button class="btn btn-primary " type="button">Send</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--**********************************
+            Content body end
+        ***********************************-->
+
+{% endblock %}

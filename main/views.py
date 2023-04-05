@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from .models import UserContact
 from django.contrib import messages
+from .models import UserContact
 
 
 def home(request):
@@ -19,10 +20,7 @@ def contact(request):
         
         messages.success(
             request, 'Your message has been sent. We will get back to you soon.')
-    else:
-        messages.error(
-            request, 'An Error Occured, Try again ')
-    
+     
     
     return render(request, 'main/contact.html')
 

@@ -1,17 +1,25 @@
 from django.db import models
+import uuid 
 
     
 class UserContact(models.Model):
     name = models.CharField(max_length=200)
     email = models.EmailField(max_length=254)
     message = models.TextField()
+    created = models.DateTimeField(auto_now_add=True, null=True, blank=True)
+    id = models.UUIDField(default=uuid.uuid4, unique=True,
+                          primary_key=True, editable=False)
+    
+    class Meta:
+        ordering = ['-created']
+    
     
     def __str__(self):
         return self.name
        
 class Projects(models.Model):
     project_name = models.CharField(max_length=200)
-    project_link = models.CharField(max_length=200, null=True, blank=True)
+    project_link = models.CharField(max_length=200, blank=True)
     project_description = models.CharField(
         max_length=250, null=True, blank=True)
     
@@ -25,6 +33,8 @@ class Projects(models.Model):
         null=True, blank=True, upload_to='project_img', default="avatar.svg")
     project_date = models.CharField(max_length=150)
     project_industry = models.CharField(max_length=150)
+    id = models.UUIDField(default=uuid.uuid4, unique=True,
+                          primary_key=True, editable=False)
     
     def __str__(self):
         return self.project_name
