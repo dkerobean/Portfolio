@@ -5,8 +5,8 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
 from user.models import Profile 
-from main.models import UserContact, ContactDetails
-from .forms import ContactDetailsForm
+from main.models import UserContact, ContactDetails, Review
+from .forms import ContactDetailsForm, ReviewForm
 
 
 @login_required(login_url="login")
@@ -48,16 +48,17 @@ def inboxRead(request, pk):
     return render(request, 'dashboard/inbox-read.html', context)
 
 
-""" Start Of Contact Details """
-
+#Start Contact Details
 
 @login_required(login_url="login")
 def viewContact(request):
     
+    user_messages = UserContact.objects.all()
     contacts = ContactDetails.objects.all()
     
     context = {
-        'contacts':contacts
+        'contacts':contacts, 
+        'user_messages':user_messages
     }
     
     return render(request, 'dashboard/contact/view-contact.html', context)
@@ -66,6 +67,7 @@ def viewContact(request):
 @login_required(login_url="login")
 def createContact(request):
     
+    user_messages = UserContact.objects.all()
     form = ContactDetailsForm()
     
     if request.method == "POST":
@@ -76,7 +78,8 @@ def createContact(request):
             return redirect('create-contact')
         
     context = {
-        'form':form
+        'form':form, 
+        'user_messages': user_messages
     }
     
     
@@ -87,6 +90,7 @@ def createContact(request):
 def updateContact(request, pk):
     
     contact = ContactDetails.objects.get(id=pk)
+    user_messages = UserContact.objects.all()
     
     form = ContactDetailsForm(instance=contact)
     
@@ -98,11 +102,77 @@ def updateContact(request, pk):
             return redirect('view-contact')
         
     context = {
-        'form':form
+        'form':form, 
+        'user_messages': user_messages
     }
     
     return render(request, 'dashboard/contact/update-contact.html', context)
 
+
+""" USER REVIEWS """
+
+@login_required(login_url="login")
+def createReview(request):
+    
+    user_messages = UserContact.objects.all()
+    
+    form = ReviewForm()
+    
+    if request.method == "POST":
+        form = ReviewForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Review Added!')
+            return redirect('create-review')
+    
+    context = {
+        'user_messages':user_messages, 
+        'form':form
+    }
+    
+    return render(request, 'dashboard/user_reviews/create-review.html', context)
+
+
+@login_required(login_url="login")
+def viewReview(request):
+    
+    user_messages = UserContact.objects.all()
+    
+    reviews = Review.objects.all()
+    
+    context = {
+        'reviews':reviews, 
+        'user_messages': user_messages
+    }
+    
+    return render(request,'dashboard/user_reviews/view-reviews.html', context)
+
+
+@login_required(login_url="login")
+def updateReview(request, pk):
+    
+    user_messages = UserContact.objects.all()
+    
+    review = Review.objects.get(id=pk)
+    
+    form = ReviewForm(instance=review)
+    
+    if request.method == "POST":
+        form = ReviewForm(request.POST, request.FILES, instance=review)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Review Updated')
+            return redirect('view-reviews')
+    
+    context = {
+        'user_messages': user_messages, 
+        'form':form
+    }
+    
+    return render(request, 'dashboard/user_reviews/view-reviews.html', context)
+
+
+""" ADMIN LOGIN """
 
 def adminLogin(request):
     

@@ -45,7 +45,7 @@ class Review(models.Model):
     reviewer_position = models.CharField(max_length=150)
     reviewer_message = models.TextField()
     reviewer_image = models.ImageField(
-        null=True, blank=True, upload_to='project_img', default="avatar.svg")
+        null=True, blank=True, upload_to='review_img', default="review_img/avatar.svg")
     id = models.UUIDField(default=uuid.uuid4, unique=True,
                           primary_key=True, editable=False)
     
