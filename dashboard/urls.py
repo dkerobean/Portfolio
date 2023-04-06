@@ -5,7 +5,12 @@ from . import views
 urlpatterns = [
     path('home/', views.adminHome, name="admin-home"), 
     path('login/', views.adminLogin, name = "login"), 
+    
     path('inbox/', views.adminInbox, name="admin-inbox"),
     path('inbox/<str:pk>', views.inboxRead, name="inbox-read"),
+    
+    path('contact/create/', views.createContact, name="create-contact"),
+    path('contact/view/', views.viewContact, name="view-contact"), 
+    path('contact/update/<str:pk>', views.updateContact, name="update-contact")
     
 ]

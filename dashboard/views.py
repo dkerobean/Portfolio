@@ -1,10 +1,12 @@
 from django.shortcuts import render, redirect
-from user.models import Profile 
-from django.contrib.auth import login, logout, authenticate 
-from django.contrib.auth.models import User 
-from django.contrib import messages 
+from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth.models import User
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from main.models import UserContact
+
+from user.models import Profile 
+from main.models import UserContact, ContactDetails
+from .forms import ContactDetailsForm
 
 
 @login_required(login_url="login")
@@ -16,7 +18,7 @@ def adminHome(request):
         'user_messages': user_messages
     }
     
-    return render(request, 'dashboard/home.html', context)
+    return render(request, 'dashboard/inbox/home.html', context)
 
 
 @login_required(login_url="login")
@@ -28,7 +30,7 @@ def adminInbox(request):
         'user_messages':user_messages
     }
     
-    return render(request,'dashboard/inbox.html', context)
+    return render(request,'dashboard/inbox/inbox.html', context)
 
 
 @login_required(login_url="login")
@@ -44,6 +46,62 @@ def inboxRead(request, pk):
     
 
     return render(request, 'dashboard/inbox-read.html', context)
+
+
+""" Start Of Contact Details """
+
+
+@login_required(login_url="login")
+def viewContact(request):
+    
+    contacts = ContactDetails.objects.all()
+    
+    context = {
+        'contacts':contacts
+    }
+    
+    return render(request, 'dashboard/contact/view-contact.html', context)
+    
+
+@login_required(login_url="login")
+def createContact(request):
+    
+    form = ContactDetailsForm()
+    
+    if request.method == "POST":
+        form = ContactDetailsForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Contact Details Added!") 
+            return redirect('create-contact')
+        
+    context = {
+        'form':form
+    }
+    
+    
+    return render(request, 'dashboard/contact/create-contact.html', context)
+
+
+@login_required(login_url="login")
+def updateContact(request, pk):
+    
+    contact = ContactDetails.objects.get(id=pk)
+    
+    form = ContactDetailsForm(instance=contact)
+    
+    if request.method == "POST":
+        form = ContactDetailsForm(request.POST, instance=contact)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Contact Updated!")
+            return redirect('view-contact')
+        
+    context = {
+        'form':form
+    }
+    
+    return render(request, 'dashboard/contact/update-contact.html', context)
 
 
 def adminLogin(request):

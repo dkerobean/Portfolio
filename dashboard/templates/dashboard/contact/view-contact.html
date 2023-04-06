@@ -1,0 +1,113 @@
+{% extends 'layouts/admin.html' %}
+
+{% load static %}
+
+
+{% block content %}
+    
+
+<!--**********************************
+            Content body start
+        ***********************************-->
+        <div class="content-body">
+            <div class="container-fluid">
+				<!-- Add Order -->
+				<div class="modal fade" id="addOrderModalside">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title">Create Project</h5>
+								<button type="button" class="close" data-bs-dismiss="modal"><span>&times;</span>
+								</button>
+							</div>
+							<div class="modal-body">
+								<form>
+									<div class="form-group">
+										<label class="text-black font-w500">Project Name</label>
+										<input type="text" class="form-control">
+									</div>
+									<div class="form-group">
+										<label class="text-black font-w500">Deadline</label>
+										<input type="date" class="form-control">
+									</div>
+									<div class="form-group">
+										<label class="text-black font-w500">Client Name</label>
+										<input type="text" class="form-control">
+									</div>
+									<div class="form-group">
+										<button type="button" class="btn btn-primary">CREATE</button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+                <div class="page-titles">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item"><a href="javascript:void(0)">Table</a></li>
+						<li class="breadcrumb-item active"><a href="javascript:void(0)">Bootstrap</a></li>
+					</ol>
+                </div>
+                <!-- row -->
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Contacts</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-responsive-md">
+                                        <thead>
+                                            <tr>
+                                                <th><strong>Email</strong></th>
+                                                <th><strong>Address</strong></th>
+                                                <th><strong>Phone 1</strong></th>
+                                                <th><strong>Phone 2</strong></th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            
+                                            {% for contact in contacts %}
+
+                                                <tr>
+                                                <td><strong>{{contact.email}}</strong></td>
+                                                <td>{{contact.address}}</td>
+                                                <td>{{contact.phone}}</td>
+                                                <td>{{contact.phone_2}}</td>
+                                                <td>
+													<div class="dropdown">
+														<button type="button" class="btn btn-warning light sharp" data-bs-toggle="dropdown">
+															<svg width="20px" height="20px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect x="0" y="0" width="24" height="24"/><circle fill="#000000" cx="5" cy="12" r="2"/><circle fill="#000000" cx="12" cy="12" r="2"/><circle fill="#000000" cx="19" cy="12" r="2"/></g></svg>
+														</button>
+														<div class="dropdown-menu">
+															<a class="dropdown-item" href="{% url 'update-contact' contact.id %}">Edit</a>
+															<a class="dropdown-item" href="table-bootstrap-basic.html#">Delete</a>
+														</div>
+													</div>
+												</td>
+                                            </tr>
+                                                
+                                            {% endfor %}
+                                                
+											
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!--**********************************
+            Content body end
+        ***********************************-->
+
+
+{% endblock content %}
+    

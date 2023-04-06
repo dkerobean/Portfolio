@@ -20,6 +20,15 @@
 							<span class="nav-text">Inbox</span>
 						</a>
 					</li>
+                   <li><a class="has-arrow ai-icon" href="javascript:void(0);" aria-expanded="false">
+							<i class="flaticon-381-networking"></i>
+							<span class="nav-text">My Contact Details</span>
+						</a>
+                        <ul aria-expanded="false">
+							<li><a href="{% url 'view-contact' %}">View Contact</a></li>
+							<li><a href="{% url 'create-contact' %}">Create Contact</a></li>
+						</ul>
+                    </li>
                     <li><a class="has-arrow ai-icon" href="javascript:void(0);" aria-expanded="false">
 							<i class="flaticon-381-television"></i>
 							<span class="nav-text">Apps</span>

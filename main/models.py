@@ -46,6 +46,8 @@ class Review(models.Model):
     reviewer_message = models.TextField()
     reviewer_image = models.ImageField(
         null=True, blank=True, upload_to='project_img', default="avatar.svg")
+    id = models.UUIDField(default=uuid.uuid4, unique=True,
+                          primary_key=True, editable=False)
     
     def __str__(self):
         return self.reviewer_name
@@ -56,6 +58,12 @@ class ContactDetails(models.Model):
     phone = models.CharField(max_length=150)
     phone_2 = models.CharField(max_length=150)
     email = models.EmailField(max_length=254)
+    id = models.UUIDField(default=uuid.uuid4, unique=True,
+                          primary_key=True, editable=False)
+    
+    def __str__(self):
+        return self.email
+    
     
     
         
