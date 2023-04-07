@@ -62,21 +62,35 @@ class ContactDetails(models.Model):
                           primary_key=True, editable=False)
     
     def __str__(self):
-        return self.email
+        return self.email   
+    
+class Socials(models.Model):
+    facebook = models.CharField(max_length=250)
+    instagram = models.CharField(max_length=250)
+    twitter = models.CharField(max_length=250)
+    linkedin = models.CharField(max_length=250)
+    
+    def __str__(self):
+        return self.facebook
     
     
     
+      
         
     
 
 
     
 
+  
+     
+    
+    
+    
+    
+      
+     
+                 
 
-    
-    
-    
-    
-    
-    
-    
+
+     

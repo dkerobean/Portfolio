@@ -47,7 +47,25 @@ def inboxRead(request, pk):
     }
     
 
-    return render(request, 'dashboard/inbox-read.html', context)
+    return render(request, 'dashboard/inbox/inbox-read.html', context)
+
+
+@login_required(login_url="login")
+def deleteMessage(request, pk):
+    
+    message = UserContact.objects.get(id=pk)
+    
+    if request.method == "POST":
+        message.delete()
+        messages.success(request, "Message Deleted!")
+        return redirect('admin-inbox')
+    
+    context = {
+        'message':message
+    }
+    
+    
+    return render(request, 'dashboard/inbox/inbox-read.html', context)
 
 
 """ CONTACT """
@@ -111,6 +129,20 @@ def updateContact(request, pk):
     return render(request, 'dashboard/contact/update-contact.html', context)
 
 
+@login_required(login_url="login")
+def deleteContact(request, pk):
+    
+    contact = ContactDetails.objects.get(id=pk)
+    
+    if request.method == "POST":
+        contact.delete()
+        messages.success(request, "Contact Deleted")
+        return redirect('view-contact')
+    
+    
+    return render(request, 'dashboard/contact/view-contact.html')
+
+
 """ USER REVIEWS """
 
 @login_required(login_url="login")
@@ -171,9 +203,24 @@ def updateReview(request, pk):
         'form':form
     }
     
+    
     return render(request, 'dashboard/user_reviews/edit-review.html', context)
 
 
+@login_required(login_url="login")
+def deleteReview(request, pk):
+
+    review = Review.objects.get(id=pk)
+
+    if request.method == "POST":
+        review.delete()
+        messages.success(request, "Review Deleted!")
+        return redirect('view-reviews')
+
+
+    return render(request, 'dashboard/user_reviews/view-reviews.html')
+
+    
 """ PROJECTS """
 
 @login_required(login_url="login")
@@ -236,6 +283,20 @@ def viewProjects(request):
     
     
     return render(request, 'dashboard/project/view-projects.html', context)
+
+
+@login_required(login_url="login")
+def deleteProject(request, pk):
+
+    project = Projects.objects.get(id=pk)
+
+    if request.method == "POST":
+        project.delete()
+        messages.success(request, "Project Deleted!")
+        return redirect('view-reviews')
+
+
+    return render(request, 'dashboard/project/view-projects.html')
 
 
 """ ADMIN LOGIN """
