@@ -5,8 +5,8 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
 from user.models import Profile 
-from main.models import UserContact, ContactDetails, Review
-from .forms import ContactDetailsForm, ReviewForm
+from main.models import UserContact, ContactDetails, Review, Projects
+from .forms import ContactDetailsForm, ReviewForm, ProjectForm
 
 
 @login_required(login_url="login")
@@ -18,8 +18,10 @@ def adminHome(request):
         'user_messages': user_messages
     }
     
-    return render(request, 'dashboard/inbox/home.html', context)
+    return render(request, 'dashboard/home.html', context)
 
+
+""" INBOX """
 
 @login_required(login_url="login")
 def adminInbox(request):
@@ -48,7 +50,7 @@ def inboxRead(request, pk):
     return render(request, 'dashboard/inbox-read.html', context)
 
 
-#Start Contact Details
+""" CONTACT """
 
 @login_required(login_url="login")
 def viewContact(request):
@@ -169,7 +171,71 @@ def updateReview(request, pk):
         'form':form
     }
     
-    return render(request, 'dashboard/user_reviews/view-reviews.html', context)
+    return render(request, 'dashboard/user_reviews/edit-review.html', context)
+
+
+""" PROJECTS """
+
+@login_required(login_url="login")
+def createProject(request):
+    
+    user_messages = UserContact.objects.all()
+    
+    form = ProjectForm()
+    
+    if request.method == "POST": 
+        form = ProjectForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Project Added")
+            return redirect('create-project')
+    
+    context = {
+        'user_messages': user_messages,
+        'form':form  
+    }
+    
+    
+    return render(request, 'dashboard/project/create-project.html', context)
+
+
+@login_required(login_url="login")
+def updateProject(request, pk):
+    
+    user_messages = UserContact.objects.all()
+    project = Projects.objects.get(id=pk)
+    
+    form = ProjectForm(instance=project)
+    
+    if request.method == "POST":
+        form = ProjectForm(request.POST, request.FILES, instance=project)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Project Updated")
+            return redirect("view-projects")
+            
+    context = {
+        'user_messages': user_messages,
+        'form':form
+    }
+    
+    
+    return render(request, 'dashboard/project/update-project.html', context)
+
+
+@login_required(login_url="login")
+def viewProjects(request):
+    
+    user_messages = UserContact.objects.all()
+    projects = Projects.objects.all()
+    
+    context = {
+        'user_messages':user_messages, 
+        'projects':projects
+    }
+    
+    
+    return render(request, 'dashboard/project/view-projects.html', context)
 
 
 """ ADMIN LOGIN """
