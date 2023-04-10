@@ -6,10 +6,18 @@ from .models import UserContact
 
 def home(request):
     
-    return render(request, 'main/home.html')
+    title = 'Home'
+    
+    context = {
+        'title':title
+    }
+    
+    return render(request, 'main/home.html', context)
 
 
 def contact(request):
+    
+    title = 'Contact'
     
     if request.method == "POST":
         name = request.POST["name"]
@@ -20,16 +28,32 @@ def contact(request):
         
         messages.success(
             request, 'Your message has been sent. We will get back to you soon.')
+        
+    context = {
+        'title':title
+    }
      
     
-    return render(request, 'main/contact.html')
+    return render(request, 'main/contact.html', context)
 
 
 def about(request):
     
-    return render(request, 'main/about.html')
+    title = 'About'
+    
+    context = {
+        'title':title
+    }
+    
+    return render(request, 'main/about.html', context)
 
 
 def works(request):
     
-    return render(request, 'main/works.html')
+    title = 'Portfolio'
+    
+    context = {
+        'title':title
+    }
+    
+    return render(request, 'main/works.html', context)
