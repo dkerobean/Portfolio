@@ -5,8 +5,8 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
 from user.models import Profile 
-from main.models import UserContact, ContactDetails, Review, Projects
-from .forms import ContactDetailsForm, ReviewForm, ProjectForm
+from main.models import UserContact, ContactDetails, Review, Projects, Socials
+from .forms import ContactDetailsForm, ReviewForm, ProjectForm, SocialForm
 
 
 @login_required(login_url="login")
@@ -19,8 +19,8 @@ def adminHome(request):
     }
     
     return render(request, 'dashboard/home.html', context)
-
-
+    
+    
 """ INBOX """
 
 @login_required(login_url="login")
@@ -299,7 +299,7 @@ def deleteProject(request, pk):
     return render(request, 'dashboard/project/view-projects.html')
 
 
-""" ADMIN LOGIN """
+""" ADMIN LOGIN/LOGOUT """
 
 def adminLogin(request):
     
@@ -326,3 +326,64 @@ def adminLogin(request):
             
             
     return render(request, 'dashboard/login.html')
+
+
+@login_required(login_url="login")
+def userLogout(request):
+    logout(request)
+    return redirect('login')
+
+
+""" SOCIALS """
+
+@login_required(login_url="login")
+def createSocial(request):
+    
+    form = SocialForm()
+    
+    if request.method == "POST":
+        form = SocialForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Link saved')
+            return redirect('view-social')
+        
+    context = {
+        'form':form
+    }
+    
+    return render(request, 'dashboard/socials/create.html', context)
+
+
+@login_required(login_url="login")
+def viewSocial(request):
+    
+    links = Socials.objects.all()
+    
+    context = {
+        'links':links
+    }
+    
+    return render(request, 'dashboard/socials/view.html', context)
+
+
+@login_required(login_url="login")
+def updateSocial(request, pk):
+    
+    link = Socials.objects.get(id=pk)
+    
+    form = SocialForm(instance=link)
+    
+    if request.method == "POST":
+        form = SocialForm(request.POST, instance=link)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Link updated')
+            return redirect('view-social')
+
+    context = {
+        'form': form
+    }
+    
+     
+    return render(request, 'dashboard/socials/update.html', context)

@@ -65,7 +65,7 @@ class ContactDetails(models.Model):
         return self.email   
     
 class Socials(models.Model):
-    facebook = models.CharField(max_length=250)
+    github = models.CharField(max_length=250)
     instagram = models.CharField(max_length=250)
     twitter = models.CharField(max_length=250)
     linkedin = models.CharField(max_length=250)

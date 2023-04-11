@@ -6,6 +6,7 @@ urlpatterns = [
     path('home/', views.adminHome, name="admin-home"), 
     
     path('login/', views.adminLogin, name = "login"), 
+    path('logout', views.userLogout, name="logout"),
     
     path('inbox/', views.adminInbox, name="admin-inbox"),
     path('inbox/<str:pk>/', views.inboxRead, name="inbox-read"),
@@ -25,5 +26,9 @@ urlpatterns = [
     path('project/update/<str:pk>/', views.updateProject, name="update-project"), 
     path('projects/all/', views.viewProjects, name="view-projects"), 
     path('project/delete/<str:pk>/', views.deleteProject, name="delete-project"),
+    
+    path('socials/add/', views.createSocial, name="create-social"), 
+    path('socials/view/', views.viewSocial, name="view-social"),
+    path('socials/update/<str:pk>/', views.updateSocial, name="update-social"),
     
 ]
