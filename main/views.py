@@ -1,20 +1,22 @@
 from django.shortcuts import render
 from .models import UserContact
 from django.contrib import messages
-from .models import UserContact, ContactDetails, Review
+from .models import UserContact, ContactDetails, Review, Socials
 
 
 def home(request):
     
     contact_details = ContactDetails.objects.all()
     reviews = Review.objects.all()
+    social_links = Socials.objects.all()
     
     title = 'Home'
     
     context = {
         'title':title, 
         'contact_details':contact_details, 
-        'reviews':reviews
+        'reviews':reviews, 
+        'social_links':social_links
     }
     
     return render(request, 'main/home.html', context)

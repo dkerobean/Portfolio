@@ -38,22 +38,44 @@
                                 </div>
                             </div>
                             <ul class="dsn-socials box-social mt-20 dsn-icon-heading-color">
-                                <li><a href="personal.html#0" target="_blank" rel="nofollow"
-                                       class="init-color move-circle border-color-default" data-dsn="parallax"><span
-                                        class="dsn-icon"><i class="fab fa-facebook-f"></i></span><span>FB</span></a>
-                                </li>
-                                <li><a href="personal.html#0" target="_blank" rel="nofollow"
-                                       class="init-color move-circle border-color-default" data-dsn="parallax"><span
-                                        class="dsn-icon"><i class="fab fa-twitter"></i></span><span>TW</span></a>
-                                </li>
-                                <li><a href="personal.html#0" target="_blank" rel="nofollow"
-                                       class="init-color move-circle border-color-default" data-dsn="parallax"><span
-                                        class="dsn-icon"><i
-                                        class="fab fa-linkedin-in"></i></span><span>LN</span></a></li>
-                                <li><a href="personal.html#0" target="_blank" rel="nofollow"
-                                       class="init-color move-circle border-color-default" data-dsn="parallax"><span
-                                        class="dsn-icon"><i class="fab fa-instagram"></i></span><span>IN</span></a>
-                                </li>
+                                
+                                {% for social in social_links %}
+                                   <li>
+                    <a href="{{social.github}}" target="_blank" rel="nofollow" class="move-circle border-color-default"
+                       data-dsn="parallax">
+                        <span class="dsn-icon"><i class="fab fa-github"></i></span>
+                        <span>GH</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{social.twitter}}" target="_blank" rel="nofollow" class="move-circle border-color-default"
+                       data-dsn="parallax">
+                    <span class="dsn-icon">
+                        <i class="fab fa-twitter"></i>
+                    </span>
+                        <span>TW</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{social.linkedin}}" target="_blank" rel="nofollow" class="move-circle border-color-default"
+                       data-dsn="parallax">
+                    <span class="dsn-icon">
+                        <i class="fab fa-linkedin-in"></i>
+                    </span>
+                        <span>LN</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{social.instagram}}" target="_blank" rel="nofollow" class="move-circle border-color-default"
+                       data-dsn="parallax">
+                    <span class="dsn-icon">
+                        <i class="fab fa-instagram"></i>
+                    </span>
+                        <span>IN</span>
+                    </a>
+                </li>
+                                {% endfor %}
+                                                                  
                             </ul>
                         </div>
                         <div class="grid-col-2">

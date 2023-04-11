@@ -55,16 +55,20 @@
                                    
                 <div class="nav-social nav-content mt-30">
                     <div class="nav-social-inner p-relative">
-                        <h5 class="sm-title-block mb-10">Follow us</h5>
+                        <h5 class="sm-title-block mb-10">Follow me</h5>
                         <ul style="--dsn-li-name: dsn6;">
-                            <li style="--dsn-li-index: 0;"><a href="personal.html#0" target="_blank"
-                                                              rel="nofollow noopener noreferrer">Dribbble.</a></li>
-                            <li style="--dsn-li-index: 1;"><a href="personal.html#0" target="_blank"
-                                                              rel="nofollow noopener noreferrer">Behance.</a></li>
-                            <li style="--dsn-li-index: 2;"><a href="personal.html#0" target="_blank"
+                            
+                            {% for social in social_links %}
+                            <li style="--dsn-li-index: 0;"><a href="{{social.github}}" target="_blank"
+                                                              rel="nofollow noopener noreferrer">GitHub.</a></li>
+                            <li style="--dsn-li-index: 1;"><a href="{{social.instagram}}" target="_blank"
+                                                              rel="nofollow noopener noreferrer">Instagram.</a></li>
+                            <li style="--dsn-li-index: 2;"><a href="{{social.linkedin}}" target="_blank"
                                                               rel="nofollow noopener noreferrer">Linkedin.</a></li>
-                            <li style="--dsn-li-index: 3;"><a href="personal.html#0" target="_blank"
+                            <li style="--dsn-li-index: 3;"><a href="{{social.twitter}}" target="_blank"
                                                               rel="nofollow noopener noreferrer">Twitter.</a></li>
+                            {% endfor %}
+                                
                         </ul>
                     </div>
                 </div>

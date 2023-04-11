@@ -1,0 +1,30 @@
+<div class="social-side d-flex align-items-center flex-column justify-content-center">
+
+    
+    {% for socials in social_links %}
+        <ul class="socials d-flex flex-column-reverse">
+        <li style="--dsn-index-animate : 0;">
+            <a href="{{socials.github}}" target="_blank" rel="nofollow">
+                <i class="fab fa-github" aria-hidden="true"></i> <span>GitHub</span>
+            </a>
+        </li>
+        <li style="--dsn-index-animate : 1;">
+            <a href="{{socials.instagram}}" target="_blank" rel="nofollow">
+                <i class="fab fa-instagram" aria-hidden="true"></i><span>Instagram</span>
+            </a>
+        </li>
+        <li style="--dsn-index-animate : 2;">
+            <a href="{{socials.twitter}}" target="_blank" rel="nofollow">
+                <i class="fab fa-twitter" aria-hidden="true"></i><span>Twitter</span>
+            </a>
+        </li>
+        <li style="--dsn-index-animate : 3;">
+            <a href="{{socials.linkedin}}" target="_blank" rel="nofollow">
+                <i class="fab fa-linkedin-in" aria-hidden="true"></i><span>Linkedin</span>
+            </a>
+        </li>
+    </ul>
+    {% endfor %}
+        
+    <div class="icon">FOLLOW ME</div>
+</div>
