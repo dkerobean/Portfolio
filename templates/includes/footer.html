@@ -63,19 +63,16 @@
                             <div class="menu-footer-menu-container">
                                 <ul id="menu-footer-menu" class="menu">
                                     <li class="menu-item">
-                                        <a href="https://theme.dsngrid.com/blackdsn/dark/home.html" class="effect-ajax">HOME</a>
+                                        <a href="{% url 'home' %}" class="effect-ajax">HOME</a>
                                     </li>
                                     <li class="menu-item">
-                                        <a href="https://theme.dsngrid.com/blackdsn/dark/work-classic-2.html" class="effect-ajax">PORTFOLIO</a>
+                                        <a href="{% url 'works' %}" class="effect-ajax">PORTFOLIO</a>
+                                    </li>                                   
+                                    <li class="menu-item">
+                                        <a href="{% url 'about' %}" class="effect-ajax">ABOUT</a>
                                     </li>
                                     <li class="menu-item">
-                                        <a href="https://theme.dsngrid.com/blackdsn/dark/stories.html" class="effect-ajax">NEWS</a>
-                                    </li>
-                                    <li class="menu-item">
-                                        <a href="https://theme.dsngrid.com/blackdsn/dark/about-us.html" class="effect-ajax">ABOUT</a>
-                                    </li>
-                                    <li class="menu-item">
-                                        <a href="https://theme.dsngrid.com/blackdsn/dark/contact.html" class="effect-ajax">CONTACT</a>
+                                        <a href="{% url 'contact' %}" class="effect-ajax">CONTACT</a>
                                     </li>
 
                                 </ul>
@@ -86,14 +83,18 @@
                                     class="background-revere ">CONTACT</span>
                             </h4>
 
-                            <div class="col-contact">
-                                <p><strong>T</strong> : +001 225 3351</p>
-                                <p class="mt-10"><strong>F</strong> :+001 225 3351</p>
+                            
+                            {% for contact in contact_details %}
+                                <div class="col-contact">
+                                <p><strong>T</strong> : {{contact.phone}}</p>
+                                <p class="mt-10"><strong>F</strong> :{{contact.phone_2}}</p>
                                 <p class="over-hidden mt-10">
                                     <strong>E</strong> : <a class="link-hover" href="personal.html#"
-                                                            data-hover-text="info@dsngrid.com">info@dsngrid.com</a>
+                                                            data-hover-text="info@dsngrid.com">{{contact.email}}</a>
                                 </p>
                             </div>
+                            {% endfor %}
+                                                           
 
                         </div>
                         <div class="grid-col-4">
@@ -101,9 +102,13 @@
                                     class="background-revere ">ADDRESS</span>
                             </h4>
                             <div class="col-address">
-                                <p>
-                                    El-Mahalla El-Kubra 37<br> 1776 Damietta<br>Egypt
-                                </p>
+                                
+                                {% for contact in contact_details %}
+                                    <p>
+                                        {{contact.address}}
+                                    </p>
+                                {% endfor %}
+                                                                    
                             </div>
                         </div>
                     </div>

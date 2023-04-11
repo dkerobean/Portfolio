@@ -1,21 +1,28 @@
 from django.shortcuts import render
 from .models import UserContact
 from django.contrib import messages
-from .models import UserContact
+from .models import UserContact, ContactDetails, Review
 
 
 def home(request):
     
+    contact_details = ContactDetails.objects.all()
+    reviews = Review.objects.all()
+    
     title = 'Home'
     
     context = {
-        'title':title
+        'title':title, 
+        'contact_details':contact_details, 
+        'reviews':reviews
     }
     
     return render(request, 'main/home.html', context)
 
 
 def contact(request):
+    
+    contact_details = ContactDetails.objects.all()
     
     title = 'Contact'
     
@@ -30,7 +37,8 @@ def contact(request):
             request, 'Your message has been sent. We will get back to you soon.')
         
     context = {
-        'title':title
+        'title':title,
+        'contact_details': contact_details
     }
      
     
@@ -39,10 +47,15 @@ def contact(request):
 
 def about(request):
     
+    contact_details = ContactDetails.objects.all()
+    reviews = Review.objects.all()
+    
     title = 'About'
     
     context = {
-        'title':title
+        'title':title,
+        'contact_details': contact_details,
+        'reviews': reviews
     }
     
     return render(request, 'main/about.html', context)
@@ -50,10 +63,13 @@ def about(request):
 
 def works(request):
     
+    contact_details = ContactDetails.objects.all()
+    
     title = 'Portfolio'
     
     context = {
-        'title':title
+        'title':title,
+        'contact_details': contact_details
     }
     
     return render(request, 'main/works.html', context)

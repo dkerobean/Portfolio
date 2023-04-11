@@ -60,15 +60,15 @@
         <div class="box-under-bottom-img mb-section">
             <div class="img-box-parallax before-z-index dsn-animate dsn-effect-down h-v-80"
                  data-dsn-triggerhook="bottom" data-dsn-grid="move-up" data-overlay="0">
-                <img class="has-bigger-scale cover-bg-img has-direction" src="{% static 'assets/img/about-5.jpg' %}"" alt=''/>
+                <img class="has-bigger-scale cover-bg-img has-direction" src="{% static 'assets/img/about-5.jpg' %}" alt=''/>
             </div>
             <div class="p-relative content container background-theme box-padding border-rdu text-center">
                 <h3 class="title-block-lg text-upper">Help Millions To Bring <br>There Creative Projects To Life </h3>
                 <p class="dsn-heading-title mt-20 max-w750">
-                    e were thoughtful about presenting these in a way where we could also tell the story of the
-                    individual.. It is a long established fact that a reader will be distracted by the readable content
-                    of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less
-                    normal distribution of letters.
+                    Are you a creative individual with big dreams but struggling to bring your projects to life? Look no further! 
+                    My graphic design, software development, website design, and digital marketing services are here to help you achieve your
+                     goals. Let me be your partner in turning your ideas into reality. Contact me today and let's work together to bring your 
+                     creative projects to life!
                 </p>
             </div>
         </div>
@@ -79,9 +79,9 @@
         <div class="container section-margin">
             <div class="section-title d-flex justify-content-center  mb-70">
                 <div class="sub-section-title text-center">
-                    <p class="description d-inline-block  circle-before mb-10">advantages</p>
+                    <p class="description d-inline-block  circle-before mb-10">what i do</p>
                     <h2 class="title-h2 dsn-heading-title p-relative title-block-lg d-block    heading-color">
-                        Let’s Check Our Services
+                        HOW I CAN HELP YOUR NEXT PROJECT
                     </h2>
                 </div>
             </div>
@@ -264,7 +264,7 @@
 
 
         <!-- ========== Team ========== -->
-        <div class="dsn-container dsn-right-container over-hidden background-section section-padding">
+        {% comment %} <div class="dsn-container dsn-right-container over-hidden background-section section-padding">
             <div class="section-title d-flex  mb-70">
                 <div class="sub-section-title">
                     <p class="description d-inline-block  circle-before mb-10">Our Team </p>
@@ -378,7 +378,7 @@
                 </div>
             </div>
 
-        </div>
+        </div> {% endcomment %}
         <!-- ========== End Team ========== -->
 
 
@@ -409,146 +409,39 @@
 					        </g>
 				        </svg>
                             <div class="swiper-container">
-                                <div class="swiper-wrapper">
-                                    <div class="swiper-slide testimonial-inner-item border-style">
-                                        <div class="avatar box-img dsn-auto">
-                                            <img src='{% static 'assets/img/team/1.jpg' %}' class="cover-bg-img" alt=''/>
-                                        </div>
-                                        <div class="testimonial-item">
-                                            <div class="testimonial-content mb-25">
-                                                <div class="quote">
-                                                    <p class="max-w750 testimonial-content p-large">
-                                                        This theme is awesome and the designer is very helpful. I
-                                                        had a
-                                                        few
-                                                        questions
-                                                        purchase. He/She helped me with all the doubts. Also, they
-                                                        provide
-                                                        quick
-                                                        support. Thank you so much for a beautiful theme
-                                                    </p>
-                                                </div>
+                                    <div class="swiper-wrapper">                                                                               
+                                        
+                                        {% for review in reviews %}
+                                            <div class="swiper-slide testimonial-inner-item border-style">
+                                            <div class="avatar box-img dsn-auto">
+                                                <img src='{{ review.reviewer_image.url}}' class="cover-bg-img" alt=''/>
                                             </div>
-                                            <div class="content-inner border-top">
-                                                <div class="d-flex align-items-center ">
-                                                    <div class="avatar box-img dsn-auto">
-                                                        <img src='{% static 'assets/img/team/1.jpg' %}'
-                                                             class="cover-bg-img" alt=''/>
+                                            <div class="testimonial-item">
+                                                <div class="testimonial-content mb-25">
+                                                    <div class="quote">
+                                                        <p class="max-w750 testimonial-content p-large">
+                                                            {{review.reviewer_message}}
+                                                        </p>
                                                     </div>
-                                                    <div class="label box-text">
-                                                        <h4 class="testimonial-name sm-title-block">MTL Graphic</h4>
-                                                        <h5 class="testimonial-position">Graphic Design</h5>
+                                                </div>
+                                                <div class="content-inner border-top justify-content-center">
+                                                    <div class="d-flex align-items-center ">
+                                                        <div class="avatar box-img dsn-auto">
+                                                            <img src='{{review.reviewer_image.url}}'
+                                                                 class="cover-bg-img" alt=''/>
+                                                        </div>
+                                                        <div class="label box-text">
+                                                            <h4 class="testimonial-name sm-title-block">{{review.reviewer_name}}</h4>
+                                                            <h5 class="testimonial-position">{{review.reviewer_position}}</h5>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
+                                        {% endfor %}
+                                                                            
                                     </div>
-                                    <div class="swiper-slide testimonial-inner-item border-style">
-                                        <div class="avatar box-img dsn-auto">
-                                            <img src='{% static 'assets/img/team/2.jpg' %}' class="cover-bg-img" alt=''/>
-                                        </div>
-                                        <div class="testimonial-item">
-                                            <div class="testimonial-content mb-25">
-                                                <div class="quote">
-                                                    <p class="max-w750 testimonial-content p-large">
-                                                        This theme is awesome and the designer is very helpful. I
-                                                        had a
-                                                        few
-                                                        questions
-                                                        purchase. He/She helped me with all the doubts. Also, they
-                                                        provide
-                                                        quick
-                                                        support. Thank you so much for a beautiful theme
-                                                    </p>
-                                                </div>
-                                            </div>
-                                            <div class="content-inner border-top">
-                                                <div class="d-flex align-items-center ">
-                                                    <div class="avatar box-img dsn-auto">
-                                                        <img src='{% static 'assets/img/team/2.jpg' %}'
-                                                             class="cover-bg-img" alt=''/>
-                                                    </div>
-                                                    <div class="label box-text">
-                                                        <h4 class="testimonial-name sm-title-block">Jeremy
-                                                            Smith</h4>
-                                                        <h5 class="testimonial-position">Creative Studio Head</h5>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="swiper-slide testimonial-inner-item border-style">
-                                        <div class="avatar box-img dsn-auto">
-                                            <img src='{% static 'assets/img/team/3.jpg' %}' class="cover-bg-img" alt=''/>
-                                        </div>
-                                        <div class="testimonial-item">
-                                            <div class="testimonial-content mb-25">
-                                                <div class="quote">
-                                                    <p class="max-w750 testimonial-content p-large">
-                                                        This theme is awesome and the designer is very helpful. I
-                                                        had a
-                                                        few
-                                                        questions
-                                                        purchase. He/She helped me with all the doubts. Also, they
-                                                        provide
-                                                        quick
-                                                        support. Thank you so much for a beautiful theme
-                                                    </p>
-                                                </div>
-                                            </div>
-                                            <div class="content-inner border-top">
-                                                <div class="d-flex align-items-center ">
-                                                    <div class="avatar box-img dsn-auto">
-                                                        <img src='{% static 'assets/img/team/3.jpg' %}'
-                                                             class="cover-bg-img" alt=''/>
-                                                    </div>
-                                                    <div class="label box-text">
-                                                        <h4 class="testimonial-name sm-title-block">Angelo
-                                                            Walking</h4>
-                                                        <h5 class="testimonial-position">Developer Lead</h5>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="swiper-slide testimonial-inner-item border-style">
-                                        <div class="avatar box-img dsn-auto">
-                                            <img src='{% static 'assets/img/team/4.jpg' %}' class="cover-bg-img" alt=''/>
-                                        </div>
-                                        <div class="testimonial-item">
-                                            <div class="testimonial-content mb-25">
-                                                <div class="quote">
-                                                    <p class="max-w750 testimonial-content p-large">
-                                                        This theme is awesome and the designer is very helpful. I
-                                                        had a
-                                                        few
-                                                        questions
-                                                        purchase. He/She helped me with all the doubts. Also, they
-                                                        provide
-                                                        quick
-                                                        support. Thank you so much for a beautiful theme
-                                                    </p>
-                                                </div>
-                                            </div>
-                                            <div class="content-inner border-top">
-                                                <div class="d-flex align-items-center ">
-                                                    <div class="avatar box-img dsn-auto">
-                                                        <img src='{% static 'assets/img/team/4.jpg' %}'
-                                                             class="cover-bg-img" alt=''/>
-                                                    </div>
-                                                    <div class="label box-text">
-                                                        <h4 class="testimonial-name sm-title-block">Bill
-                                                            Gardner</h4>
-                                                        <h5 class="testimonial-position">Web designer</h5>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-
                                 </div>
-                            </div>
                         </div>
 
                         <div class="dsn-swiper-paginate  d-flex p-relative w-100 h-100 mt-30 align-items-center container justify-content-between">
@@ -589,7 +482,7 @@
         <!-- ========== End testimonials ========== -->
 
         <!-- ========== Brand ========== -->
-        <div class="p-relative container section-margin">
+        {% comment %} <div class="p-relative container section-margin">
             <div class="section-title d-flex justify-content-center  mb-70">
                 <div class="sub-section-title text-center">
                     <p class="description d-inline-block  circle-before mb-10">testimonials</p>
@@ -641,7 +534,7 @@
                 </div>
 
             </div>
-        </div>
+        </div> {% endcomment %}
         <!-- ========== End Brand ========== -->
 
         <!-- ========== Footer ========== -->
