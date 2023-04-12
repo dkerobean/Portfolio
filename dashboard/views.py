@@ -293,7 +293,7 @@ def deleteProject(request, pk):
     if request.method == "POST":
         project.delete()
         messages.success(request, "Project Deleted!")
-        return redirect('view-reviews')
+        return redirect('view-projects')
 
 
     return render(request, 'dashboard/project/view-projects.html')

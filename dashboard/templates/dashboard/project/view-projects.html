@@ -70,13 +70,21 @@
                                             <p>{{project.project_date}}<span class="item"></span></p>
                                             <p class="text-content">{{project.project_description}}</p>
                                         </div>
-                                        <a href="{% url 'update-project' project.id %}">
-											<button class="btn btn-success btn-sm">Edit</button>
-										</a>
-                                        <form action="{% url 'delete-project' project.id %}" method="POST">
-											{% csrf_token %}                                 
-											<button class="btn btn-danger btn-sm" type="submit">Delete</button>
-										</form>
+										
+										<div class="row">
+											<div class="col">
+												<a href="{% url 'update-project' project.id %}">
+													<button class="btn btn-success">Edit</button>
+												</a>
+											</div>
+											<div class="col">
+												<form action="{% url 'delete-project' project.id %}" method="POST">
+													{% csrf_token %}                                 
+													<button class="btn btn-danger " type="submit">Delete</button>
+												</form>
+											</div>
+										</div>
+                                                               
                                     </div>
                                 </div>
                             </div>
