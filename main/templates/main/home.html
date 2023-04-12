@@ -235,7 +235,7 @@
                                data-dsn-ajax="work" title="HEADPHONES">
                                 <div class="box-image-bg before-z-index dsn-swiper-parallax-transform"
                                      data-overlay="4">
-                                    <img class="cover-bg-img" src="{% static 'assets/img/portfolio/project6/1.jpg' %}"
+                                    <img class="cover-bg-img" src="{{project.project_image.url}}"
                                          alt=""/>
                                 </div>
                             </a>
@@ -243,20 +243,19 @@
                                 <div class="post-title-info">
                                     <div class="post-meta max-w750">
                                         <div class="p-relative d-inline-block dsn-category dsn-bg metas mb-10 entry-meta">
-                                            <span data-separator="&">Production</span>
+                                            <span data-separator="&">{{project.prroject_industry}}</span>
                                         </div>
                                     </div>
                                     <h2 class="post-title title-block">
-                                        <a href="#" class="effect-ajax"
+                                        <a href="{% url 'work-details' project.id %}" class="effect-ajax"
                                            data-dsn-ajax="work">
-                                            HEADPHONES
+                                            {{project.project_name}}
                                         </a>
                                     </h2>
                                     <p class="section_description mt-15 max-w570 ">
-                                        ABOUT THE PROJECT Mode is an audio range designed to provide optimal
-                                        performance and comfort for every mode of use. The system utilises a
+                                        {{project.project_description}}
                                     </p>
-                                    <a href="#"
+                                    <a href="{% url 'work-details' project.id %}"
                                        class="effect-ajax dsn-post-link move-circle border-color-heading"
                                        data-dsn="parallax" data-dsn-ajax="work">
                                         <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg">
@@ -265,8 +264,6 @@
                                         </svg>
                                     </a>
                                 </div>
-
-
                             </div>
                         </div>
                     </article>

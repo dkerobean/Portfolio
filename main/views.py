@@ -28,6 +28,7 @@ def home(request):
 def contact(request):
     
     contact_details = ContactDetails.objects.all()
+    social_links = Socials.objects.all()
     
     title = 'Contact'
     
@@ -43,7 +44,8 @@ def contact(request):
         
     context = {
         'title':title,
-        'contact_details': contact_details
+        'contact_details': contact_details, 
+        'social_links': social_links,
     }
      
     
@@ -54,13 +56,15 @@ def about(request):
     
     contact_details = ContactDetails.objects.all()
     reviews = Review.objects.all()
+    social_links = Socials.objects.all()
     
     title = 'About'
     
     context = {
         'title':title,
         'contact_details': contact_details,
-        'reviews': reviews
+        'reviews': reviews, 
+        'social_links': social_links,
     }
     
     
@@ -72,12 +76,15 @@ def works(request):
     contact_details = ContactDetails.objects.all()
     projects = Projects.objects.all()
     
+    social_links = Socials.objects.all()
+    
     title = 'Portfolio'
     
     context = {
         'title':title,
         'contact_details': contact_details, 
-        'projects':projects
+        'projects':projects, 
+        'social_links': social_links,
     }
     
     
@@ -86,10 +93,18 @@ def works(request):
 
 def workDetails(request, pk):
     
-    project = Projects.objects.get()
+    title = 'Portfolio Details'
+    
+    project = Projects.objects.get(id=pk)
+    
+    contact_details = ContactDetails.objects.all()
+    social_links = Socials.objects.all()
     
     context = {
-        'project':project
+        'project':project,
+        'contact_details': contact_details,
+        'title':title, 
+        'social_links': social_links,
     }
     
     

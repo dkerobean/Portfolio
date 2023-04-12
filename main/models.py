@@ -71,7 +71,7 @@ class Socials(models.Model):
     linkedin = models.CharField(max_length=250)
     
     def __str__(self):
-        return self.github
+        return self.instagram
     
     
     
