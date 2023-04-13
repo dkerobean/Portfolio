@@ -30,7 +30,9 @@ class Projects(models.Model):
     project_category = models.CharField(max_length=150, choices = CATEGORY_CHOICES)
     
     project_image = models.ImageField(
-        null=True, blank=True, upload_to='project_img', default="avatar.svg")
+        null=True, blank=True, upload_to='project_img', default="product_img/placeholder.png")
+    project_image2 = models.ImageField(
+        null=True, blank=True, upload_to='project_img', default="product_img/placeholder.png")
     project_date = models.CharField(max_length=150)
     project_industry = models.CharField(max_length=150)
     id = models.UUIDField(default=uuid.uuid4, unique=True,
