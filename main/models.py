@@ -24,8 +24,14 @@ class Projects(models.Model):
         max_length=250, null=True, blank=True)
     
     CATEGORY_CHOICES = [
-        ('IT', 'IT'), 
-        ('MARKETING', 'Marketing')
+        ('Web Development', 'Web Development'),
+        ('Software Development', 'Software Development'),
+        ('Mobile App Development', 'Mobile App Development'),
+        ('E-commerce Solutions', 'E-commerce Solutions'),
+        ('Graphic Design', 'Graphic Design'),
+        ('Digital Marketing', 'Digital Marketing')
+        
+        
     ]
     project_category = models.CharField(max_length=150, choices = CATEGORY_CHOICES)
     

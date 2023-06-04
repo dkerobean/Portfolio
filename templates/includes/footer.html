@@ -135,10 +135,16 @@
                         </div>
                     </div>
                     <div class="footer-bottom mt-60 pt-30 border-top pb-30 text-center">
-                        <p class="over-hidden">
-                            © <script type="text/javascript">document.write(new Date().getFullYear());</script> DeekieLabs
+                        <p class="over-hidden" id="footer">
+                            
                         </p>
                     </div>
+
+                    <script>
+                        var currentYear = new Date().getFullYear();
+                        document.getElementById("footer").innerHTML = "&copy; " + currentYear + " DeekieTech";
+                    </script>
+
                 </div>
 
 
