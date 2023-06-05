@@ -248,7 +248,7 @@
                                         </a>
                                     </h2>
                                     <p class="section_description mt-15 max-w570 ">
-                                        {{project.project_description}}
+                                        {{project.project_description|slice:"150"}}...
                                     </p>
                                     <a href="{% url 'work-details' project.id %}"
                                        class="effect-ajax dsn-post-link move-circle border-color-heading"
