@@ -21,7 +21,7 @@ class Projects(models.Model):
     project_name = models.CharField(max_length=200)
     project_link = models.CharField(max_length=200, blank=True)
     project_description = models.CharField(
-        max_length=250, null=True, blank=True)
+        max_length=550, null=True, blank=True)
     
     CATEGORY_CHOICES = [
         ('Web Development', 'Web Development'),
